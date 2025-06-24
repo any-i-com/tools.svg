@@ -20,6 +20,7 @@ import { saveAs } from 'file-saver'
 import { toPng } from 'html-to-image'
 import SVGShapeGenerator from '@/components/SVGShapeGenerator'
 import SVGOptimizer from '@/components/SVGOptimizer'
+import SVGSmartDrawing from '@/components/SVGSmartDrawing'
 
 const defaultSvg = `<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <circle cx="100" cy="100" r="80" fill="#4f46e5" stroke="#1e1b4b" stroke-width="4"/>
@@ -376,7 +377,13 @@ export default function Home() {
           </section>
 
           {/* 工具面板区域 */}
-          <section className="mt-4">
+          <section className="mt-4 space-y-4">
+            {/* 第一行：鼠标绘图工具 */}
+            <div className="grid grid-cols-1">
+              <SVGSmartDrawing onSvgGenerated={(svg: string) => setSvgCode(svg)} />
+            </div>
+            
+            {/* 第二行：其他工具 */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               {/* SVG信息面板 */}
               {svgInfo && (
